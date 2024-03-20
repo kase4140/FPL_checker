@@ -1,0 +1,41 @@
+gather information about certain players in pl, their fixtures, their total points, their positions
+
+create a graph that reflects the players names and their rank
+create a graph that reflects the players names and their event total
+create a graph that reflects the players names and their total points
+create a graph that shows where the players are from in our league
+create a graph what team each player supports
+create a graph on how many leagues do each player has classical ones
+
+https://fantasy.premierleague.com/api/leagues-classic/1084104/standings/
+
+https://fantasy.premierleague.com/api/entry/2348860/
+
+https://medium.com/analytics-vidhya/getting-started-with-fantasy-premier-league-data-56d3b9be8c32
+
+technologies:
+kakfa, airflow, docker, pandas, snowflake, tabluea
+
+then will integrate hadoop and hive
+then we will do one full one in azure
+
+
+
+tuesday: setup docker, Extraction, Kafka, airflow
+Wednesday: reading from kafka and creating dataframes
+Thursday: data frames send it to snowflake
+Friday: create graphs from tabluea
+
+-------------------------------------------------------------------
+steps on how to start it:
+
+(done)1. create docker-compose for airflow and kafka and download the requirements
+(done)2. step up on how you want the tables to be or the data frames to be
+(done)3. start extracting and sending to kafka
+4. read from kafka and start creating the dfs based on how i want the tables
+5. send it to snowflake
+6. create the graphs from tabluea
+
+
+
+
