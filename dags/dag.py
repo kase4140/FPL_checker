@@ -11,6 +11,8 @@ import requests
 from kafka import KafkaConsumer
 import pandas as pd
 import json
+from snowflake.connector.pandas_tools import write_pandas
+from snowflake.connector import connect
 
 default_args = {
     'owner': 'Hamdan',
@@ -145,6 +147,83 @@ def dataframe_creations():
 
     return df_player_rank, df_player_event_total, df_player_total, df_player_region, df_fav_team_names, leagues_df
 
+def sending_to_snowflake():
+    # password: Hamdan123k
+    # username: hamdankasem
+    conn = connect(
+        user="hamdankasem",
+        password="Hamdan123k",
+        account="VBOBRHA-LS78835",
+        warehouse='FPL',
+        database='fpl_data',
+        schema='FPL',
+    )
+    print(conn)
+    
+    df_player_rank, df_player_event_total, df_player_total, df_player_region, df_fav_team_names, leagues_df = dataframe_creations()
+
+    success1, _, _, _ = write_pandas(conn, df_player_rank, "player_rank", auto_create_table=True)
+    success2, _, _, _ = write_pandas(conn, df_player_event_total, "player_event_total", auto_create_table=True)
+    success3, _, _, _ = write_pandas(conn, df_player_total, "player_total", auto_create_table=True)
+    success4, _, _, _ = write_pandas(conn, df_player_region, "player_region", auto_create_table=True)
+    success5, _, _, _ = write_pandas(conn, df_fav_team_names, "player_fav_team", auto_create_table=True)
+    success6, _, _, _ = write_pandas(conn, leagues_df, "player_leagues", auto_create_table=True)
+    if success1 == True:
+        print("table 1 is created")
+    else:
+        print("something went wrong for table 1")
+
+    if success2 == True:
+        print("table 2 is created")
+    else:
+        print("something went wrong for table 2")
+
+    if success3 == True:
+        print("table 3 is created")
+    else:
+        print("something went wrong for table 3")
+
+    if success4 == True:
+        print("table 4 is created")
+    else:
+        print("something went wrong for table 4")
+
+    if success5 == True:
+        print("table 5 is created")
+    else:
+        print("something went wrong for table 5")
+
+    if success6 == True:
+        print("table 6 is created")
+    else:
+        print("something went wrong for table 6")
+
+
+    conn.close()
+
+    return
+
+def verify():
+    conn = connect(
+        user="hamdankasem",
+        password="Hamdan123k",
+        account="VBOBRHA-LS78835",
+        warehouse='FPL',
+        database='fpl_data',
+        schema='FPL',
+    )
+    cur = conn.cursor()
+    sql = "SELECT * FROM FPL_DATA.FPL.\"player_event_total\""
+    cur.execute(sql)
+    data = cur.fetchall()
+    df = pd.DataFrame(data, columns=[x[0] for x in cur.description])
+    print(df)
+
+    cur.close()
+    conn.close()
+
+    return 
+
 with DAG("fpl_dag",
     default_args=default_args,
     description='this dag streams fpl data to kafka',
@@ -155,9 +234,14 @@ with DAG("fpl_dag",
         python_callable=streaming,
     )
 
-    creating_df_task = PythonOperator(
-        task_id = 'df_data',
-        python_callable=dataframe_creations,
+    sending_to_datawarehouse = PythonOperator(
+        task_id = 'sending_data_snowflake',
+        python_callable=sending_to_snowflake,
     )
 
-    streaming_task >> creating_df_task
+    verify_data_snowflake = PythonOperator(
+        task_id = 'verify_data_snowflake',
+        python_callable=verify,
+    )
+
+    streaming_task >> sending_to_datawarehouse >> verify_data_snowflake
