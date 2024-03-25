@@ -148,12 +148,12 @@ def dataframe_creations():
     return df_player_rank, df_player_event_total, df_player_total, df_player_region, df_fav_team_names, leagues_df
 
 def sending_to_snowflake():
-    # password: Hamdan123k
-    # username: hamdankasem
     conn = connect(
         user="hamdankasem",
-        password="Hamdan123k",
-        account="VBOBRHA-LS78835",
+        # just need to add the password
+        password="",
+        # account ID organizationID-AccountID
+        account="",
         warehouse='FPL',
         database='fpl_data',
         schema='FPL',
