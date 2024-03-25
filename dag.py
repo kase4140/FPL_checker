@@ -206,8 +206,10 @@ def sending_to_snowflake():
 def verify():
     conn = connect(
         user="hamdankasem",
-        password="Hamdan123k",
-        account="VBOBRHA-LS78835",
+        # just need to add the password
+        password="",
+        # account ID organizationID-AccountID
+        account="",
         warehouse='FPL',
         database='fpl_data',
         schema='FPL',
