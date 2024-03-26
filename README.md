@@ -20,6 +20,7 @@ Fourth Step: we would need to create a topic under topics tab in our kafka serve
 Fifth Step: Make sure to have a snowflake account and should have the FPL warehouse created under admin and the schema in data is created under data
 
 ![image](https://github.com/kase4140/FPL_checker/assets/58044223/4910d645-7794-4674-814f-ab0313e50972)
+
 ![image](https://github.com/kase4140/FPL_checker/assets/58044223/2765d231-701c-453d-a811-4dd3685a6604)
 
 
@@ -28,7 +29,9 @@ Sixth Step: we go to our airflow server and run the dag from there and we can ac
 
 
 Seventh Step: then we would validate that the data is being filled in our snowflake tables in the UI and we can see our kafka message being filled with data coming from the API and we can validate that by going to UI: http://localhost:8888/
+
 ![image](https://github.com/kase4140/FPL_checker/assets/58044223/4809cddf-bf3c-441a-beb1-cd9e58dfe2f1)
+
 ![image](https://github.com/kase4140/FPL_checker/assets/58044223/da008132-980f-4269-af4f-d5321700fb71)
 
 
