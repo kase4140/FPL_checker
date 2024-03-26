@@ -23,6 +23,7 @@ Sixth Step: we go to our airflow server and run the dag from there and we can ac
 Seventh Step: then we would validate that the data is being filled in our snowflake tables in the UI and we can see our kafka message being filled with data coming from the API and we can validate that by going to UI: http://localhost:8888/
 
 Eighth Step: to connect to PowerBi to start the creation of graphs and we can do that by going to open->get data-> database -> snowflake and then we would need to add the server ID and the warehouse name. or you can import the report I create and go from there.
+![image](https://github.com/kase4140/FPL_checker/assets/58044223/ef9cbbec-a82e-4fe8-8b2a-97cc7add3a4b)
 
 Author and Coder: Hamdan Kasem
 
