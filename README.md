@@ -18,6 +18,7 @@ Fourth Step: we would need to create a topic under topics tab in our kafka serve
 ![image](https://github.com/kase4140/FPL_checker/assets/58044223/cda3103c-8eef-489d-b310-39aa5839c0b9)
 
 Fifth Step: Make sure to have a snowflake account and should have the FPL warehouse created under admin and the schema in data is created under data
+
 ![image](https://github.com/kase4140/FPL_checker/assets/58044223/4910d645-7794-4674-814f-ab0313e50972)
 ![image](https://github.com/kase4140/FPL_checker/assets/58044223/2765d231-701c-453d-a811-4dd3685a6604)
 
